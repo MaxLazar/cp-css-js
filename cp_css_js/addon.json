@@ -1,0 +1,16 @@
+{
+  "name": "MX CP CSS & JS",
+  "shortname": "cp_css_js",
+  "version": "1.0.0",
+  "foundation_version": "4.5.2",
+  "description": "ExpressionEngine add-on allows you to add custom CSS and Javascript to the Control Panel pages.",
+  "license": "MaxLazar",
+  "namespace": "MX\\Cp_css_js",
+  "require": {
+    "php": ">=5.3.*",
+    "expressionengine/core": ">=3.5.17"
+  },
+  "resources": {
+    "themes": false
+  }
+}

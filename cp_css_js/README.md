@@ -1,8 +1,4 @@
 # MX CP CSS & JS
-![MX CP CSS & JS demo](resources/img/mx-cp-css-js-demo.png)
----
-
-![MX CP CSS & JS](resources/img/mx-cp-css-js.png)
 
 ExpressionEngine add-on allows you to add custom CSS and Javascript to the Control Panel pages.
 
