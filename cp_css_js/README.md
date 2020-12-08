@@ -34,6 +34,8 @@ The main configuration file, found at system/user/config/config.php, is loaded e
 	$config['css_js_settings'] = [
         'js' => '',
         'css' => '.ee-sidebar__title {background-color:#ff6003} .ee-main-header {background-color:#ff6003}',
+        'css_file' => 'custom_dev.css',
+        'js_file' => 'custom_dev.js',
         'enable' => true
 	];
 	
@@ -42,6 +44,8 @@ The main configuration file, found at system/user/config/config.php, is loaded e
 	$config['css_js_settings'] = [
         'js' => '',
         'css' => '.ee-sidebar__title {background-color:#A2FF03}',
+        'css_file' => 'custom_prod.css',
+        'js_file' => 'custom_prod.js',        
         'enable' => true
 	];
 

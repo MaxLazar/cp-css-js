@@ -11,9 +11,11 @@ class Cp_css_js_ext
     public $version = MX_CP_CSSJS_VERSION;
 
     public $defaults = [
-        'css'    => '',
-        'js'     => '',
-        'enable' => true
+        'css'     => '',
+        'js'      => '',
+        'css_url' => '',
+        'js_url'  => '',
+        'enable'  => true
     ];
 
 
@@ -96,6 +98,30 @@ class Cp_css_js_ext
 
         if ($this->settings['enable']) {
             $data .= NL . $this->settings[$type];
+
+            if ($type == 'css' && $this->settings['css_url'] != '') {
+                $data .= NL . '@import url("' . $this->settings['css_url'] . '")';
+            }
+            if ($type == 'js' && $this->settings['js_url'] != '') {
+                $data .= NL . 'function loadJs( url ){
+  return new Promise(( resolve, reject ) => {
+    if (document.querySelector( `head > script[ src = "${url}" ]`) !== null ){
+        console.warn( `script already loaded: ${url}` );
+        resolve();
+    }
+    const script = document.createElement( "script" );
+    script.src = url;
+    script.onload = resolve;
+    script.onerror = function( reason ){
+        // This can be useful for your error-handling code
+        reason.message = `error trying to load script ${url}`;
+        reject( reason );
+    };
+    document.head.appendChild( script );
+  });
+};
+loadJs("' . $this->settings['js_url'] . '").then( res => {} ).catch( err => {} );';
+            }
         }
         return $data;
     }
@@ -190,6 +216,26 @@ class Cp_css_js_ext
                             'required' => false
                         )
                     )
+                ),
+                array(
+                    'title'  => lang('addon_css_file'),
+                    'fields' => array(
+                        'css_url' => array(
+                            'type'     => 'text',
+                            'value'    => $values['css_url'],
+                            'required' => false
+                        )
+                    )
+                ),
+                array(
+                    'title'  => lang('addon_js_file'),
+                    'fields' => array(
+                        'js_url' => array(
+                            'type'     => 'text',
+                            'value'    => $values['js_url'],
+                            'required' => false
+                        )
+                    )
                 )
             )
         );
@@ -237,9 +283,11 @@ class Cp_css_js_ext
     {
         // Set up app settings
         $settingData = [
-            'css'    => '',
-            'js'     => '',
-            'enable' => true
+            'css'     => '',
+            'js'      => '',
+            'css_url' => '',
+            'js_url'  => '',
+            'enable'  => true
         ];
 
         return serialize($settingData);
