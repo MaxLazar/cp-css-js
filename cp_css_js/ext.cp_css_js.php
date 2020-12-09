@@ -102,6 +102,7 @@ class Cp_css_js_ext
             if ($type == 'css' && $this->settings['css_url'] != '') {
                 $data .= NL . '@import url("' . $this->settings['css_url'] . '")';
             }
+
             if ($type == 'js' && $this->settings['js_url'] != '') {
                 $data .= NL . 'function loadJs( url ){
   return new Promise(( resolve, reject ) => {
