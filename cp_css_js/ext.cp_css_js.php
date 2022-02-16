@@ -93,7 +93,7 @@ class Cp_css_js_ext
     private function _add($data, $type)
     {
         if (ee()->extensions->last_call !== false) {
-            $data = $this->EE->extensions->last_call;
+            $data = ee()->extensions->last_call;
         }
 
         if ($this->settings['enable']) {
@@ -293,5 +293,4 @@ loadJs("' . $this->settings['js_url'] . '").then( res => {} ).catch( err => {} )
 
         return serialize($settingData);
     }
-
 }
